@@ -1,40 +1,40 @@
-import axios from "axios";
-import phoneBookActions from "./phoneBookActions";
+import axios from 'axios';
+import phoneBookActions from './phoneBookActions';
 
-const baseURL = `http://localhost:2000/`;
+const baseURL = `https://goit-phonebook-api.herokuapp.com`;
 
-const onAddContact = (contacts) => (dispatch) => {
+const onAddContact = contacts => dispatch => {
   dispatch(phoneBookActions.addContactRequest());
   axios
-    .post(`${baseURL}contacts`, contacts)
-    .then((response) => {
+    .post(`${baseURL}/contacts`, contacts)
+    .then(response => {
       // console.log(response.data.contacts);
       dispatch(phoneBookActions.addContactSuccess(response.data));
     })
-    .catch((error) => dispatch(phoneBookActions.addContactError(error)));
+    .catch(error => dispatch(phoneBookActions.addContactError(error)));
 };
 
-const fetchContacts = () => (dispatch) => {
+const fetchContacts = () => dispatch => {
   dispatch(phoneBookActions.fetchContactRequest());
 
   axios
-    .get(`${baseURL}contacts`)
+    .get(`${baseURL}/contacts`)
     .then(({ data }) => {
       dispatch(phoneBookActions.fetchContactSuccess(data));
     })
-    .catch((error) => {
+    .catch(error => {
       dispatch(phoneBookActions.fetchContactError(error));
     });
 };
 
-const onRemoveContacts = (id) => (dispatch) => {
+const onRemoveContacts = id => dispatch => {
   dispatch(phoneBookActions.removeContactRequest());
   axios
-    .delete(`${baseURL}contacts/${id}`)
+    .delete(`${baseURL}/contacts/${id}`)
     .then(() => {
       dispatch(phoneBookActions.removeContactSuccess(id));
     })
-    .catch((error) => {
+    .catch(error => {
       dispatch(phoneBookActions.removeContactError(error));
     });
 };
