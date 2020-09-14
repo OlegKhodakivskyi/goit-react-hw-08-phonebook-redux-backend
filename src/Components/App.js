@@ -1,35 +1,43 @@
 import React, { Component, Suspense } from 'react';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import routes from '../routes';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import routes from '../routes/routes';
+import PrivateRoutes from '../routes/PrivateRoutes';
+import PublicRoutes from '../routes/PublicRoutes';
 
-import phoneBookOperations from '../redux/phoneBookActions/phoneBookOperations';
+// import phoneBookOperations from '../redux/phoneBookActions/phoneBookOperations';
 import phoneBookSelectors from '../redux/phoneBookActions/phoneBookSelectors';
+import authOperations from '../redux/auth/authOperations';
+
 import ContactForm from './Contacts/ContactForm';
 import ContactFormList from './ContactFormList/ContactFormList';
-import Alert from './Alert/Alert';
+// import Alert from './Alert/Alert';
 import Filter from './Filter/Filter';
-import styles from './App.module.css';
-import stylesAlert from './Alert/Alert.module.css';
 import Layout from './Layout/Layout';
+import styles from './App.module.css';
+// import stylesAlert from './Alert/Alert.module.css';
 
 class App extends Component {
   componentDidMount() {
-    this.props.onFetchContacts();
+    this.props.onGetCurrentUser();
   }
   render() {
-    const { alert, loading } = this.props;
+    const { loading } = this.props;
     return (
       <BrowserRouter>
         <Layout>
           <Suspense fallback={loading && <h2>Loading ...</h2>}>
             <Switch>
-              {routes.map(route => (
-                <Route key={route.path} {...route} />
-              ))}
+              {routes.map(route =>
+                route.private ? (
+                  <PrivateRoutes key={route.label} {...route} />
+                ) : (
+                  <PublicRoutes key={route.label} {...route} />
+                ),
+              )}
               {/* // ----------- ALert ----- */}
-              {alert && (
+              {/* {alert && (
                 <CSSTransition
                   classNames={stylesAlert}
                   in={true}
@@ -39,9 +47,11 @@ class App extends Component {
                 >
                   <Alert alert={alert} />
                 </CSSTransition>
-              )}
+              )} */}
+
               {/* // ----------- Phonebook ----- */}
-              <CSSTransition
+
+              {/* <CSSTransition
                 classNames={styles}
                 in={true}
                 appear={true}
@@ -49,8 +59,10 @@ class App extends Component {
                 unmountOnExit
               >
                 <h1 className={styles.sectionTitle}>Phonebook</h1>
-              </CSSTransition>
+              </CSSTransition> */}
+
               {/* // ----------- Contact FORM ---- */}
+
               <ContactForm />
               <h2 className={styles.contactListTitle}>Contacts</h2>
               <Filter />
@@ -72,7 +84,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  onFetchContacts: phoneBookOperations.fetchContacts,
+  onGetCurrentUser: authOperations.getCurrentUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

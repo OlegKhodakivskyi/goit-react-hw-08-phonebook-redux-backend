@@ -37,34 +37,34 @@ const logIn = credentials => dispatch => {
     .catch(error => dispatch(authActions.loginError(error)));
 };
 
-// const getCurrentUser = () => (dispatch, getState) => {
-//   const {
-//     auth: { token: persistedToken },
-//   } = getState();
+const getCurrentUser = () => (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
 
-//   if (!persistedToken) {
-//     return;
-//   }
+  if (!persistedToken) {
+    return;
+  }
 
-//   token.set(persistedToken);
-//   dispatch(authActions.getCurrentUserRequest());
+  token.set(persistedToken);
+  dispatch(authActions.getCurrentUserRequest());
 
-//   axios
-//     .get("/users/current")
-//     .then(({ data }) => dispatch(authActions.getCurrentUserSuccess(data)))
-//     .catch((error) => authActions.getCurrentUserError(error));
-// };
+  axios
+    .get('/users/current')
+    .then(({ data }) => dispatch(authActions.getCurrentUserSuccess(data)))
+    .catch(error => authActions.getCurrentUserError(error));
+};
 
-// const logOut = () => (dispatch) => {
-//   dispatch(authActions.logoutRequest());
+const logOut = () => dispatch => {
+  dispatch(authActions.logoutRequest());
 
-//   axios
-//     .post("/users/logout")
-//     .then(() => {
-//       token.unset();
-//       dispatch(authActions.logoutSuccess());
-//     })
-//     .catch((error) => dispatch(authActions.logoutError(error)));
-// };
+  axios
+    .post('/users/logout')
+    .then(() => {
+      token.unset();
+      dispatch(authActions.logoutSuccess());
+    })
+    .catch(error => dispatch(authActions.logoutError(error)));
+};
 
-export default { register, logIn };
+export default { register, logIn, getCurrentUser, logOut };

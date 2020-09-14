@@ -14,18 +14,18 @@ const onAddContact = contacts => dispatch => {
     .catch(error => dispatch(phoneBookActions.addContactError(error)));
 };
 
-const fetchContacts = () => dispatch => {
-  dispatch(phoneBookActions.fetchContactRequest());
+// const fetchContacts = () => dispatch => {
+//   dispatch(phoneBookActions.fetchContactRequest());
 
-  axios
-    .get(`${baseURL}/contacts`)
-    .then(({ data }) => {
-      dispatch(phoneBookActions.fetchContactSuccess(data));
-    })
-    .catch(error => {
-      dispatch(phoneBookActions.fetchContactError(error));
-    });
-};
+//   axios
+//     .get(`${baseURL}/contacts`)
+//     .then(({ data }) => {
+//       dispatch(phoneBookActions.fetchContactSuccess(data));
+//     })
+//     .catch(error => {
+//       dispatch(phoneBookActions.fetchContactError(error));
+//     });
+// };
 
 const onRemoveContacts = id => dispatch => {
   dispatch(phoneBookActions.removeContactRequest());
@@ -39,4 +39,4 @@ const onRemoveContacts = id => dispatch => {
     });
 };
 
-export default { onAddContact, fetchContacts, onRemoveContacts };
+export default { onAddContact, onRemoveContacts };

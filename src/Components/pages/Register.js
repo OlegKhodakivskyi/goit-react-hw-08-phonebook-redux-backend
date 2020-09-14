@@ -64,6 +64,7 @@ class RegisterPage extends Component {
             <input
               type="password"
               name="password"
+              autoComplete="on"
               value={password}
               onChange={this.handleChange}
             />
