@@ -1,13 +1,15 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import authSelectors from '../redux/auth/authSelectors';
 
-function PrivateRoute({ component: MyComponent, isAuth, ...rest }) {
+function PrivateRoute({ component: MyComponent, isAuthenticated, ...rest }) {
+  console.log('isAuth', isAuthenticated);
   return (
     <Route
       {...rest}
       render={props => {
-        return isAuth ? (
+        return isAuthenticated ? (
           <MyComponent {...props} />
         ) : (
           <Redirect to="/register" />
@@ -18,8 +20,9 @@ function PrivateRoute({ component: MyComponent, isAuth, ...rest }) {
 }
 
 const mapStateToProps = state => {
+  console.log('state', state);
   return {
-    isAuth: state.auth.onAuth.token,
+    isAuthenticated: authSelectors.isAuthenticated(state),
   };
 };
 export default connect(mapStateToProps)(PrivateRoute);

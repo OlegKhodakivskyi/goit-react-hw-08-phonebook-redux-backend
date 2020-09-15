@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+
 import phoneBookReducers from './phoneBookActions/phoneBookReducers';
 import authReducers from '../redux/auth/authReducer';
 
@@ -12,7 +13,7 @@ const middleware = [thunk];
 const persistConfig = {
   key: 'auth',
   storage,
-  whiteList: ['email', 'token', 'databaseId', 'isAuth'],
+  whiteList: ['token'],
 };
 
 const rootReducer = combineReducers({

@@ -24,12 +24,12 @@ const Navigation = ({ isAuthenticated }) => (
 
     {isAuthenticated && (
       <NavLink
-        to="/tasks"
+        to="/contacts"
         exact
         style={styles.link}
         activeStyle={styles.activeLink}
       >
-        Tasks
+        Contacts
       </NavLink>
     )}
   </nav>
@@ -40,15 +40,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Navigation);
-
-// {routes.map(route => (
-//   <NavLink
-//     exact={route.exact}
-//     key={route.label}
-//     to={route.path}
-// style={styles.link}
-// activeStyle={styles.activeLink}
-//   >
-//     {route.label}
-//   </NavLink>
-// ))}

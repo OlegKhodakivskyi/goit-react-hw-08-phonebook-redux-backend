@@ -22,6 +22,7 @@ class App extends Component {
   componentDidMount() {
     this.props.onGetCurrentUser();
   }
+
   render() {
     const { loading } = this.props;
     return (
