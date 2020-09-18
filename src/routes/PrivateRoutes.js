@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import authSelectors from '../redux/auth/authSelectors';
 
 function PrivateRoute({ component: MyComponent, isAuthenticated, ...rest }) {
-  console.log('isAuth', isAuthenticated);
+  // console.log('isAuth', isAuthenticated);
   return (
     <Route
       {...rest}
@@ -20,7 +20,7 @@ function PrivateRoute({ component: MyComponent, isAuthenticated, ...rest }) {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state);
+  // console.log('state', state);
   return {
     isAuthenticated: authSelectors.isAuthenticated(state),
   };

@@ -1,5 +1,6 @@
 import authActionType from './authTypes';
 
+// ---- REGISTER ----
 const registerRequest = () => ({
   type: authActionType.REGISTER_REQUEST,
 });
@@ -12,6 +13,7 @@ const registerError = error => ({
   payload: error,
 });
 
+// ---- LOGIN ----
 const loginRequest = () => ({
   type: authActionType.LOGIN_REQUEST,
 });
@@ -24,10 +26,12 @@ const loginError = error => ({
   payload: error,
 });
 
+// ---- LOGOUT ----
 const logoutSuccess = () => ({
   type: authActionType.LOGOUT_SUCCESS,
 });
 
+// ---- GET CURRENT USER ----
 const getCurrentUserRequest = token => ({
   type: authActionType.GET_CURRENT_USER_REQUEST,
   payload: token,

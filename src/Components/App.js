@@ -64,10 +64,10 @@ class App extends Component {
 
               {/* // ----------- Contact FORM ---- */}
 
-              <ContactForm />
-              <h2 className={styles.contactListTitle}>Contacts</h2>
-              <Filter />
-              <ContactFormList />
+              {/* <ContactForm /> */}
+              {/* <h2 className={styles.contactListTitle}>Contacts</h2> */}
+              {/* <Filter /> */}
+              {/* <ContactFormList /> */}
             </Switch>
           </Suspense>
         </Layout>

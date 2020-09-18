@@ -66,7 +66,7 @@ const token = (state = '', { type, payload }) => {
       return payload.token;
 
     case authActionType.LOGIN_SUCCESS:
-      console.log(payload);
+      // console.log(payload);
       return payload.token;
 
     case authActionType.LOGOUT_SUCCESS:
