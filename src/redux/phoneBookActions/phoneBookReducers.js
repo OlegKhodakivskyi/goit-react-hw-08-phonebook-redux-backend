@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import phoneBookActionsTypes from "./phoneBookActionTypes";
+import { combineReducers } from 'redux';
+import phoneBookActionsTypes from './phoneBookActionTypes';
 
 const items = (state = [], { type, payload }) => {
   // console.log(payload);
@@ -13,14 +13,14 @@ const items = (state = [], { type, payload }) => {
     case phoneBookActionsTypes.DEL_CONTACT_SUCCESS:
       console.log(state);
       // console.log(items);
-      return state.filter((contacts) => contacts.id !== payload);
+      return state.filter(contacts => contacts.id !== payload);
 
     default:
       return state;
   }
 };
 
-const filter = (state = "", { type, payload }) => {
+const filter = (state = '', { type, payload }) => {
   switch (type) {
     case phoneBookActionsTypes.FILTER:
       // console.log("filter");

@@ -56,7 +56,7 @@ const getCurrentUser = () => (dispatch, getState) => {
 };
 
 const logOut = () => dispatch => {
-  dispatch(authActions.logoutRequest());
+  // dispatch(authActions.logoutRequest());
 
   axios
     .post('/users/logout')

@@ -8,14 +8,14 @@ import PublicRoutes from '../routes/PublicRoutes';
 
 // import phoneBookOperations from '../redux/phoneBookActions/phoneBookOperations';
 import phoneBookSelectors from '../redux/phoneBookActions/phoneBookSelectors';
-import authOperations from '../redux/auth/authOperations';
+// import authOperations from '../redux/auth/authOperations';
 
 // import ContactForm from './Contacts/ContactForm';
 // import ContactFormList from './ContactFormList/ContactFormList';
 // import Alert from './Alert/Alert';
 // import Filter from './Filter/Filter';
 import Layout from './Layout/Layout';
-import styles from './App.module.css';
+// import styles from './App.module.css';
 // import stylesAlert from './Alert/Alert.module.css';
 
 class App extends Component {
@@ -23,12 +23,12 @@ class App extends Component {
   //   this.props.onGetCurrentUser();
   // }
 
-  componentDidMount() {
-    if (this.props.isAuthenticated) {
-      authOperations.token.set(this.props.isAuthenticated);
-      this.props.onGetCurrentUser();
-    }
-  }
+  // componentDidMount() {
+  //   if (this.props.isAuthenticated) {
+  //     authOperations.token.set(this.props.isAuthenticated);
+  //     this.props.onGetCurrentUser();
+  //   }
+  // }
 
   render() {
     const { loading } = this.props;
@@ -88,12 +88,12 @@ const mapStateToProps = state => {
   return {
     // alert: phoneBookSelectors.getAlert(state),
     loading: phoneBookSelectors.getLoading(state),
-    isAuthenticated: phoneBookSelectors.isAuthenticated(state),
+    // isAuthenticated: phoneBookSelectors.isAuthenticated(state),
   };
 };
 
-const mapDispatchToProps = {
-  onGetCurrentUser: authOperations.getCurrentUser,
-};
+// const mapDispatchToProps = {
+//   onGetCurrentUser: authOperations.getCurrentUser,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

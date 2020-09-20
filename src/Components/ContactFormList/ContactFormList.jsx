@@ -9,6 +9,8 @@ import Filter from '../Filter/Filter';
 
 const ContactFormList = ({ contacts, onRemoveContacts }) => (
   <>
+    {/* {this.props.contacts.length > 1 && <Filter />} */}
+
     <Filter />
     <TransitionGroup component="ul" className={styles.contactList}>
       {contacts.map(({ id, name, number }) => (

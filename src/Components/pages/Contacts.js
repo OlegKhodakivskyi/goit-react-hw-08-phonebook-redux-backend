@@ -5,12 +5,18 @@ import phoneBookOperations from '../../redux/phoneBookActions/phoneBookOperation
 import phoneBookActions from '../../redux/phoneBookActions/phoneBookActions';
 import phoneBookSelectors from '../../redux/phoneBookActions/phoneBookSelectors';
 import ContactFormList from '../ContactFormList/ContactFormList';
+import authOperations from '../../redux/auth/authOperations';
 
 class ContactsPage extends Component {
   state = {
     name: '',
     number: '',
   };
+
+  componentDidMount() {
+    this.props.onGetCurrentUser();
+    this.props.fetchContacts();
+  }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -72,7 +78,7 @@ class ContactsPage extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state, 'ContactPage');
+  // console.log(state, 'ContactPage');
 
   return {
     contacts: phoneBookSelectors.getContacts(state),
@@ -82,6 +88,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   onAddContact: phoneBookOperations.onAddContact,
   onAlert: phoneBookActions.duplicate,
+  onGetCurrentUser: authOperations.getCurrentUser,
+  fetchContacts: phoneBookOperations.fetchContacts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsPage);
