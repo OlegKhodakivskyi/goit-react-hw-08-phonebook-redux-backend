@@ -1,28 +1,39 @@
 import React from 'react';
-// import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
+import styles from '../App.module.css';
 
-const HomePage = () => (
-  // <CSSTransition
-  //   // classNames={styles}
-  //   in={true}
-  //   appear={true}
-  //   timeout={1500}
-  //   unmountOnExit
-  // >
+const HomePage = ({ token }) => (
   <>
-    <h1
-    // className={styles.sectionTitle}
+    <CSSTransition
+      classNames={styles}
+      in={true}
+      appear={true}
+      timeout={1500}
+      unmountOnExit
     >
-      Phonebook
-    </h1>
-    <div>
-      <h1>
-        Welcome to your personal on-line contacts keeper!
-        <span> Please, log-in to continue!</span>
+      <h1
+      // className={styles.sectionTitle}
+      >
+        Phonebook
       </h1>
-    </div>
+    </CSSTransition>
+    {!token && (
+      <div>
+        <h1>
+          Welcome to your personal on-line contacts keeper!
+          <span> Please, log-in to continue!</span>
+        </h1>
+      </div>
+    )}
   </>
-  /* </CSSTransition> */
 );
 
-export default HomePage;
+const mapStateToProps = state => {
+  // console.log(state.auth.token);
+  return {
+    token: state.auth.token,
+  };
+};
+
+export default connect(mapStateToProps)(HomePage);
