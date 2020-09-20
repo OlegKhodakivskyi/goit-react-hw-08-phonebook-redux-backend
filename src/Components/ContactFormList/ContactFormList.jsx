@@ -1,13 +1,15 @@
-import React from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { connect } from "react-redux";
-import ContactFormListItem from "../ContactFormListItem/ContactFormListItem";
-import phoneBookOperations from "../../redux/phoneBookActions/phoneBookOperations";
-import phoneBookSelectors from "../../redux/phoneBookActions/phoneBookSelectors";
-import styles from "./ContactList.module.css";
+import React from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { connect } from 'react-redux';
+import ContactFormListItem from '../ContactFormListItem/ContactFormListItem';
+import phoneBookOperations from '../../redux/phoneBookActions/phoneBookOperations';
+import phoneBookSelectors from '../../redux/phoneBookActions/phoneBookSelectors';
+import styles from './ContactList.module.css';
+import Filter from '../Filter/Filter';
 
 const ContactFormList = ({ contacts, onRemoveContacts }) => (
   <>
+    <Filter />
     <TransitionGroup component="ul" className={styles.contactList}>
       {contacts.map(({ id, name, number }) => (
         <CSSTransition
@@ -28,7 +30,7 @@ const ContactFormList = ({ contacts, onRemoveContacts }) => (
   </>
 );
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // console.log(state, "stateList");
   return {
     items: phoneBookSelectors.getContacts(state),

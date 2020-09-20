@@ -10,17 +10,24 @@ import PublicRoutes from '../routes/PublicRoutes';
 import phoneBookSelectors from '../redux/phoneBookActions/phoneBookSelectors';
 import authOperations from '../redux/auth/authOperations';
 
-import ContactForm from './Contacts/ContactForm';
-import ContactFormList from './ContactFormList/ContactFormList';
+// import ContactForm from './Contacts/ContactForm';
+// import ContactFormList from './ContactFormList/ContactFormList';
 // import Alert from './Alert/Alert';
-import Filter from './Filter/Filter';
+// import Filter from './Filter/Filter';
 import Layout from './Layout/Layout';
 import styles from './App.module.css';
 // import stylesAlert from './Alert/Alert.module.css';
 
 class App extends Component {
+  // componentDidMount() {
+  //   this.props.onGetCurrentUser();
+  // }
+
   componentDidMount() {
-    this.props.onGetCurrentUser();
+    if (this.props.isAuthenticated) {
+      authOperations.token.set(this.props.isAuthenticated);
+      this.props.onGetCurrentUser();
+    }
   }
 
   render() {
@@ -79,8 +86,9 @@ class App extends Component {
 const mapStateToProps = state => {
   // console.log(state.contacts.alertSwitch);
   return {
-    alert: phoneBookSelectors.getAlert(state),
+    // alert: phoneBookSelectors.getAlert(state),
     loading: phoneBookSelectors.getLoading(state),
+    isAuthenticated: phoneBookSelectors.isAuthenticated(state),
   };
 };
 

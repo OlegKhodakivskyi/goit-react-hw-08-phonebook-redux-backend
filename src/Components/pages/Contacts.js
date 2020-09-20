@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import phoneBookOperations from '../../redux/phoneBookActions/phoneBookOperations';
 import phoneBookActions from '../../redux/phoneBookActions/phoneBookActions';
 import phoneBookSelectors from '../../redux/phoneBookActions/phoneBookSelectors';
+import ContactFormList from '../ContactFormList/ContactFormList';
 
 class ContactsPage extends Component {
   state = {
@@ -64,13 +65,14 @@ class ContactsPage extends Component {
 
           <button type="submit"> Add contact</button>
         </form>
+        <ContactFormList />
       </>
     );
   }
 }
 
 const mapStateToProps = state => {
-  // console.log(state, "stateFOrm");
+  console.log(state, 'ContactPage');
 
   return {
     contacts: phoneBookSelectors.getContacts(state),

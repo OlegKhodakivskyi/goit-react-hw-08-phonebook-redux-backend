@@ -1,6 +1,6 @@
-import phoneBookActionsTypes from "./phoneBookActionTypes";
+import phoneBookActionsTypes from './phoneBookActionTypes';
 
-const filter = (filter) => {
+const filter = filter => {
   // console.log(filter);
   return {
     type: phoneBookActionsTypes.FILTER,
@@ -14,13 +14,15 @@ const duplicate = () => ({
   type: phoneBookActionsTypes.DUPLICATE,
 });
 
+// ------ ADD ------
+
 const addContactRequest = () => {
   return {
     type: phoneBookActionsTypes.ADD_CONTACT_REQUEST,
   };
 };
 
-const addContactSuccess = (contacts) => {
+const addContactSuccess = contacts => {
   // console.log(contacts);
   return {
     type: phoneBookActionsTypes.ADD_CONTACT_SUCCESS,
@@ -30,12 +32,14 @@ const addContactSuccess = (contacts) => {
   };
 };
 
-const addContactError = (error) => {
+const addContactError = error => {
   return {
     type: phoneBookActionsTypes.ADD_CONTACT_ERROR,
     payload: { error },
   };
 };
+
+// -------- FETCH -------
 
 const fetchContactRequest = () => {
   return {
@@ -43,19 +47,21 @@ const fetchContactRequest = () => {
   };
 };
 
-const fetchContactSuccess = (contacts) => {
+const fetchContactSuccess = contacts => {
   return {
     type: phoneBookActionsTypes.FETCH_CONTACT_SUCCESS,
     payload: contacts,
   };
 };
 
-const fetchContactError = (error) => {
+const fetchContactError = error => {
   return {
     type: phoneBookActionsTypes.FETCH_CONTACT_ERROR,
     payload: { error },
   };
 };
+
+// ------ REMOVE ------
 
 const removeContactRequest = () => {
   return {
@@ -63,7 +69,7 @@ const removeContactRequest = () => {
   };
 };
 
-const removeContactSuccess = (id) => {
+const removeContactSuccess = id => {
   // console.log(id);
   return {
     type: phoneBookActionsTypes.DEL_CONTACT_SUCCESS,
@@ -71,7 +77,7 @@ const removeContactSuccess = (id) => {
   };
 };
 
-const removeContactError = (error) => {
+const removeContactError = error => {
   return {
     type: phoneBookActionsTypes.DEL_CONTACT_ERROR,
     payload: { error },

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
-import ContactsPage from '../pages/Contacts';
+// import ContactsPage from '../pages/Contacts';
 
 const styles = {
   container: {
