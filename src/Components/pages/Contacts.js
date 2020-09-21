@@ -8,7 +8,7 @@ import ContactFormList from '../ContactFormList/ContactFormList';
 import authOperations from '../../redux/auth/authOperations';
 import styles from '../App.module.css';
 import Alert from '../Alert/Alert';
-import stylesAlert from '../Alert/Alert.module.css';
+// import stylesAlert from '../Alert/Alert.module.css';
 
 class ContactsPage extends Component {
   state = {
@@ -31,7 +31,7 @@ class ContactsPage extends Component {
 
     if (this.duplicateFn()) {
       console.log('hi');
-      this.props.onAlert();
+      // this.props.onAlert();
       setTimeout(() => {
         this.props.onAlert();
       }, 1500);
@@ -42,8 +42,9 @@ class ContactsPage extends Component {
   };
 
   duplicateFn = () => {
+    const name = this.state.name;
     return this.props.contacts.some(
-      contacts => contacts.name.toLowerCase() === this.state.name.toLowerCase(),
+      contacts => contacts.name.toLowerCase() === name.toLowerCase().trim(),
     );
   };
 
@@ -52,7 +53,7 @@ class ContactsPage extends Component {
 
     return (
       <>
-        <Alert alert={alert} />
+        {this.props.alert && <Alert alert={alert} />}
 
         <h2 className={styles.contactListTitle}>Contacts</h2>
         <form onSubmit={this.handleSubmit}>
@@ -89,7 +90,7 @@ const mapStateToProps = state => {
 
   return {
     contacts: phoneBookSelectors.getContacts(state),
-    // alert: phoneBookSelectors.getAlert(state),
+    alert: phoneBookSelectors.getAlert(state),
   };
 };
 
